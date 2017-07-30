@@ -35,7 +35,7 @@ class MyMeta(type):
         """
         print('MyMeta.__init__', cls, name, bases, attr)
         # WARNING: this line has NO EFFECT, instantiated class will NOT have g2()!
-        attr['g2'] = lambda self: self.x * -20
+        attr['g2_no_effect'] = lambda self: self.x * -20
         name = 'RenameClassInInitHasNoEffect'
         super().__init__(name, bases, attr)
         # you can add attrs to class
