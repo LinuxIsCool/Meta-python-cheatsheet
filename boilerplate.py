@@ -74,7 +74,13 @@ class MyClass(metaclass=MyMeta):
         might have different __init__ parameters.
         
         __new__ is useful when you want to enforce certain properties even when
-        your subclasses forget to call super().__init__()
+        your subclasses forget to call super().__init__().
+
+        __new__ behaves similarly to type.__init__, except for one key difference:
+        __new__ will be called EVERY time an object instance is created, while 
+        type.__init__ will only be called ONCE to manipulate the class attrs/methods. 
+        That means if you want to wrap a class' __init__ method (e.g. delayed init), 
+        you should do it in type.__init__ instead of __new__ to avoid infinite recursion! 
         """
         print('MyClass.__new__', cls, args, kwargs)
         obj = super().__new__(cls)
